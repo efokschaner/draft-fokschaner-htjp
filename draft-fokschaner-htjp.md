@@ -193,12 +193,15 @@ Support will likely increase proportionally to HTJP's popularity in production.
 
 
 # IANA Considerations
+In accordance with {{?BCP90=RFC3864}}, the following new HTTP header field will be registered in the "Message Headers" registry maintained at <http://www.iana.org/assignments/message-headers/>.
 
-HTJP has no IANA Considerations outside of those already covered by HTTP.
+| Header field name | Applicable protocol | Status        | Reference            |
+| Anti-HTJP-Nonce   | http                | informational | [](#anti-htjp-nonce) |
 
 
 # Security Considerations
 
+## Securing HTTP against HTJP
 A complete implementation of HTJP is inadvisable from a security perspective.
 Due to its semantics, the issuing of a successfully authorized HTTP response to an HTJP server,
 will result in a reply containing the HTTP request that elicits said response including any credentials,
@@ -214,7 +217,7 @@ Client request:
   Content-Length: 61
   Content-Type: text/plain
 
-  Some publicly known information accessed using authorization.
+  Some predictable information accessed using authorization.
 
 Server response:
 (line breaks in Authorization header are for RFC formatting)
@@ -226,11 +229,20 @@ Server response:
       JOL-kIObgTI0MzFfm1yVFFkIo1xf7DZGjY_oedRBZW0
 ~~~
 
+Given that we cannot prevent anyone from attempting to implement HTJP,
+it is RECOMMENDED to consider how HTJP impacts security when using HTTP.
+
 Note that it was only possible to query for the credentialed HTTP request because the
-content served in response to the authorized request was public knowledge. HTTP servers could mitigate this
-vulnerability exposed by HTJP by only serving content that is at least as secret as the credentials themselves
+response to the authorized request was predictable. HTTP servers could mitigate this
+vulnerability exposed by HTJP by only serving a response that is at least as secret as the credentials themselves
 in response to an authorized request.
 
+### Anti-HTJP-Nonce Header {#anti-htjp-nonce}
+A generic solution to this problem is to use an "Anti-HTJP-Nonce" HTTP header in HTTP responses.
+The value of an "Anti-HTJP-Nonce" header SHOULD be a cryptographically-secure random number in any encoding that is valid for an HTTP header value.
+The length of this number SHOULD be determined by the producer of the HTTP response, accounting for their RNG method and their threat model.
+
+## HTJPS
 HTJP, being just HTTP, also has most of the same security concerns and features as HTTP itself.
 For example, the use of HTJP over an encrypted connection, such as TLS 1.2 {{?RFC5246}},
 similar to HTTP Secure (HTTPS), is referred to as HTJP Secure (HTJPS). It is important to
