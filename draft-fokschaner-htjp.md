@@ -265,4 +265,5 @@ Implementations of HTJ2P have groundbreaking potential in the fields of HTTP cac
 
 # Acknowledgements
 {: numbered="no"}
-The author wishes to thank anyone who has ever built a tool or a technology that made people ask "Why?".
+The author thanks Peter Phillips for the suggestion of the Anti-HTJP-Nonce header.
+The author also wishes to thank anyone who has ever built a tool or a technology that made people ask "Why?".
