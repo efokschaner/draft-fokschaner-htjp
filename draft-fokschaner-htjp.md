@@ -188,7 +188,7 @@ which could be misinterpreted as an HTJP response. See more on proxies in [](#ca
 # Caches and proxies  {#caches-and-proxies}
 Despite being valid HTTP traffic, support for caching and proxying of HTJP traffic is unfortunately not widespread.
 It is estimated that currently approximately 0.0% of all HTTP-aware intermediaries gracefully handle HTJP traffic.
-For this reason, it is currently recommended that HTJP should not be deployed behind an HTTP proxying or caching layer.
+For this reason, it is currently RECOMMENDED that HTJP should not be deployed behind an HTTP proxying or caching layer.
 Support will likely increase proportionally to HTJP's popularity in production.
 
 
@@ -265,5 +265,4 @@ Implementations of HTJ2P have groundbreaking potential in the fields of HTTP cac
 
 # Acknowledgements
 {: numbered="no"}
-The author wishes to thank everyone who made the effort to feign amusement on his sharing of this protocol with them.
-The author also wishes to thank anyone who has ever built a tool or a technology to make people ask "Why?".
+The author wishes to thank anyone who has ever built a tool or a technology that made people ask "Why?".
